@@ -1,0 +1,10 @@
+
+const Container = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="w-full max-w-[600px] px-4 mx-auto">
+      {children}
+    </div>
+  );
+};
+
+export default Container;
