@@ -5,10 +5,8 @@ import { cookies } from "next/headers";
 import { Montserrat } from 'next/font/google'
 import Providers from './providers'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import Header from '@/components/commons/Header';
 import SignInClientComponent from '@/components/commons/SignIn';
 import { Toaster } from '@/components/ui/toaster';
-import BottomTab from '@/components/commons/BottomTab/BottomTab';
 import Container from '@/components/commons/Container/Container';
 
 const montserrat = Montserrat({ subsets: ['latin'] })
@@ -39,11 +37,7 @@ export default async function RootLayout({
         {session ? (
             <>
               <main className='relative max-w-[600px] mx-auto pb-[78px]'>
-                <Header />
-                <Container>
-                  {children}
-                </Container>
-                <BottomTab />
+                {children}
               </main>
               <Toaster />
             </>

@@ -1,11 +1,18 @@
+import BottomTab from "@/components/commons/BottomTab/BottomTab";
+import Container from "@/components/commons/Container/Container";
+import Header from "@/components/commons/Header";
 
 type NotesProps = {}
 
 const NotesPage = ({}: NotesProps) => {
   return (
-    <div>
-      NotesPage
-    </div>
+    <>
+      <Header />
+      <Container>
+        노트화면
+      </Container>
+      <BottomTab />
+    </>
   );
 };
 

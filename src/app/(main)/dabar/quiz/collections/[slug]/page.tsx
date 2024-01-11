@@ -7,6 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { DialogTrigger } from "@/components/ui/dialog";
 import { getDabarsByCollectionId } from "@/supabase/dabar";
 import Link from "next/link";
+import Container from "@/components/commons/Container/Container";
 
 const DabarCollectionQuizPage = ({ params }: { params: { slug: string }}) => {
   const router = useRouter()
@@ -18,9 +19,9 @@ const DabarCollectionQuizPage = ({ params }: { params: { slug: string }}) => {
   })
 
   return (
-    <div className="">
+    <Container>
       <div className='flex items-center pt-4 pb-3 my-2'>
-        <ChevronLeftIcon className='h-6 w-6 mr-2' onClick={() => router.back()}/>
+        <ChevronLeftIcon className='h-6 w-6 mr-2 cursor-pointer' onClick={() => router.back()}/>
         <h2 className='text-xl'>퀴즈</h2>
       </div>
       {isLoading || isFetching ? (
@@ -44,7 +45,7 @@ const DabarCollectionQuizPage = ({ params }: { params: { slug: string }}) => {
             )}
           </>
         )}
-    </div>
+    </Container>
   );
 };
 
