@@ -1,11 +1,18 @@
+import BottomTab from "@/components/commons/BottomTab/BottomTab";
+import Container from "@/components/commons/Container/Container";
+import Header from "@/components/commons/Header";
 
 type PrayPageProps = {}
 
 const PrayPage = ({}: PrayPageProps) => {
   return (
-    <div>
-      page
-    </div>
+    <>
+      <Header />
+      <Container>
+        기도화면
+      </Container>
+      <BottomTab />
+    </>
   );
 };
 

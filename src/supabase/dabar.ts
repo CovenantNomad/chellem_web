@@ -34,7 +34,6 @@ export const createDabarRecord = async (data: TSaveDabarRecord) => {
     const { data: { user } } = await supabase.auth.getUser()
 
     if (user) {
-      console.log('유저있음')
       const { data: dabarRecord } = await supabase
       .from("dabar_user_records")
       .select('*')

@@ -11,6 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import DabarViewer from "@/components/domains/dabar/DabarViewer/DabarViewer";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { getDabarsByCollectionId } from "@/supabase/dabar";
+import Container from "@/components/commons/Container/Container";
 
 const DabarCollectionPage = ({ params }: { params: { slug: string } }) => {
   const [ selectedVerse, setSelectedVerse ] = useState<{scripture_passage: string, bible_reference: string}>({
@@ -28,7 +29,7 @@ const DabarCollectionPage = ({ params }: { params: { slug: string } }) => {
 
 
   return (
-    <div className="">
+    <Container>
       <div className='flex items-center pt-4 my-2'>
         <ChevronLeftIcon className='h-6 w-6 mr-2' onClick={() => router.back()}/>
         <h2 className='text-xl'>다바르 암송카드</h2>
@@ -86,7 +87,7 @@ const DabarCollectionPage = ({ params }: { params: { slug: string } }) => {
             )}
           </>
         )}
-    </div>
+    </Container>
   );
 };
 

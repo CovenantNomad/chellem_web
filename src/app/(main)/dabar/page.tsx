@@ -1,14 +1,27 @@
 import React from 'react';
 import DabarCollectionCards from '@/components/domains/dabar/DabarCollectionCards';
+import Header from '@/components/commons/Header';
+import Container from '@/components/commons/Container/Container';
+import BottomTab from '@/components/commons/BottomTab/BottomTab';
+import DabarTabs from '@/components/domains/dabar/DabarTabs/DabarTabs';
+import Spacer from '@/components/commons/Spacer';
+import DabarHeader from '@/components/domains/dabar/DabarHeader';
+
 
 const DabarPage = () => {  
   return (
-    <div>
-      <div className='pt-4 pb-2 my-2'>
-        <h2 className='text-xl'>다바르 암송카드</h2>
-      </div>
-      <DabarCollectionCards baseUrl={'/dabar/collections/'}/>
-    </div>
+    <>
+      <Header />
+      <Container>
+        <div>
+          <Spacer className='h-4' />
+          <DabarTabs />
+          <DabarHeader title={'다바르 암송 카드'} />
+          <DabarCollectionCards baseUrl={'/dabar/collections/'}/>
+        </div>
+      </Container>
+      <BottomTab />
+    </>
   );
 };
 
