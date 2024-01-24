@@ -1,4 +1,4 @@
-import BottomTab from "@/components/commons/BottomTab/BottomTab";
+import BottomTab from "@/components/commons/BottomTab";
 import Container from "@/components/commons/Container/Container";
 import Header from "@/components/commons/Header";
 
