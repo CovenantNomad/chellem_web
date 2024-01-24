@@ -1,11 +1,3 @@
-export type Json =
-  | string
-  | number
-  | boolean
-  | null
-  | { [key: string]: Json | undefined }
-  | Json[]
-
 export interface Database {
   public: {
     Tables: {
@@ -422,7 +414,7 @@ export interface Database {
         | "3 John"
         | "Jude"
         | "Rev"
-      NOTE_TYPE: "QT" | "SERMON" | "THANKS" | "DAIRY" | "CONTEMPLATION"
+      NOTE_TYPE: "QT" | "SERMON" | "THANKS" | "DIARY" | "CONTEMPLATION"
       SERVICE_TYPE:
         | "SUNDAY SERVICE"
         | "WEDNESDAY SERVICE"

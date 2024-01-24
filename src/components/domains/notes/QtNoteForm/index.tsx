@@ -10,7 +10,6 @@ import { format } from "date-fns";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useToast } from "@/components/ui/use-toast";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createQtNote, getExistingNote } from "@/supabase/worships";

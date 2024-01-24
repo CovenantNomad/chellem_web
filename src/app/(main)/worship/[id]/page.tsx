@@ -4,7 +4,6 @@ import QtAndSermonNoteBlock from "@/components/domains/notes/QtAndSermonNoteBloc
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { QueryData } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
 
 const WorshipDetailPage = async ({ params }: { params: { id: string } }) => {

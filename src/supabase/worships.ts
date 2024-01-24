@@ -202,3 +202,66 @@ export const getExistingNote = async ({ date, type}: GetExistingNoteProps) => {
   }
   
 }
+
+export const createSimpleNote = async (NoteFormData: TQtNoteData) => {
+  try {
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (user) {
+      if (NoteFormData !== null) {
+        const { data: existing, error: existingError } = await supabase
+          .from("notes")
+          .select("*")
+          .eq("user_id", user.id)
+          .eq("date", NoteFormData.date)
+          .eq("type", NoteFormData.type)
+          .single();
+
+        if (!existing) {
+          const { data: inserted, error: insertError } = await supabase
+            .from("notes")
+            .insert({
+              user_id: user.id,
+              type: NoteFormData.type,
+              content: NoteFormData.content,
+              date: NoteFormData.date,
+              is_deleted: NoteFormData.is_deleted,
+              updated_at: NoteFormData.updated_at,
+              book: NoteFormData.book,
+              chapters: NoteFormData.chapters,
+              script: NoteFormData.script,
+              service_type: NoteFormData.serviceType,
+              title: NoteFormData.title
+            })
+            .single();
+
+          return { data: inserted, error: insertError };
+        } else {
+          const { data: updated, error: updateError } = await supabase
+            .from("notes")
+            .update({
+              date: NoteFormData.date,
+              content: NoteFormData.content,
+              title: NoteFormData.title,
+              script: NoteFormData.script,
+              book: NoteFormData.book,
+              chapters: NoteFormData.chapters,
+              updated_at: NoteFormData.updated_at,
+            })
+            .eq("id", existing.id)
+            .single();
+
+          return { data: updated, error: updateError };
+        }
+
+      } else {
+        console.error('로그인 유저가 없습니다')
+        throw new Error('로그인 유저가 없습니다')
+      }
+    }
+    
+  } catch (e) {
+    console.error(e)
+    throw new Error('서버와 통신 중 문제가 발생하였습니다')
+  }
+}
