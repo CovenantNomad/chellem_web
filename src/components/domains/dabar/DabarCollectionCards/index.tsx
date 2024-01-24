@@ -26,9 +26,11 @@ const DabarCollectionCards = ({ baseUrl }:{baseUrl: string}) => {
           {data && data.map(collection => (
             <Link key={collection.id} href={`${baseUrl}${collection.id}`} aria-disabled={!collection.releaseStatus} className={`${!collection.releaseStatus && 'pointer-events-none'}`} >
               <div className={cn(
-                'h-[210px] w-full border rounded-lg',
-                collection.releaseStatus ? 'border-solid' : 'border-dashed'
-              )}></div>
+                'h-[210px] w-full flex items-center justify-center border rounded-lg',
+                collection.releaseStatus ? 'border-solid bg-[#2E406B]' : 'border-dashed'
+              )}>
+                {collection.releaseStatus && <p className="text-white font-semibold"><span className="text-yellow-500">25차</span> 다바르 암송카드</p>}
+              </div>
               <div className='py-2'>
                 <p className='text-sm'>{collection.name}</p>
                 <Badge variant={collection.releaseStatus ? 'outline': 'secondary'}>{collection.releaseStatus ? '오픈' : '시작전'}</Badge>

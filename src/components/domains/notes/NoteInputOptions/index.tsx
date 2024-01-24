@@ -33,8 +33,6 @@ const NoteInputOptions = ({ viewOptions, setViewOptions }: NoteInputOptionsProps
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[150px]">
-        <DropdownMenuLabel>Toggle Menu</DropdownMenuLabel>
-        <DropdownMenuSeparator />
         {viewOptions
           .map((option) => {
             return (

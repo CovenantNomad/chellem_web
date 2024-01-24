@@ -1,4 +1,4 @@
-import { Enums } from './../types/database.types';
+import { Enums, Tables } from './../types/database.types';
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -153,6 +153,33 @@ export function parseScriptureInput(input: string): Scripture {
   }
 
   return result;
+}
+
+export function filterItemsByDate(items: Tables<'notes'>[]) {
+  const today = new Date();
+  const sevenDaysAgo = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
+  const thirtyDaysAgo = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 30);
+
+  const lastSevenDaysItems = items.filter(item => {
+    const itemDate = new Date(item.date);
+    return itemDate >= sevenDaysAgo && itemDate <= today;
+  });
+
+  const lastThirtyDaysItems = items.filter(item => {
+    const itemDate = new Date(item.date);
+    return itemDate >= thirtyDaysAgo && itemDate < sevenDaysAgo;
+  });
+
+  const olderThanThirtyDaysItems = items.filter(item => {
+    const itemDate = new Date(item.date);
+    return itemDate < thirtyDaysAgo;
+  });
+
+  return {
+    lastSevenDaysItems,
+    lastThirtyDaysItems,
+    olderThanThirtyDaysItems
+  };
 }
 
 export const convertBookType = (inputBook: string) => {

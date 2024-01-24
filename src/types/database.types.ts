@@ -1,4 +1,6 @@
-export type Json =
+Need to install the following packages:
+  supabase@1.136.2
+Ok to proceed? (y) export type Json =
   | string
   | number
   | boolean
@@ -422,7 +424,7 @@ export interface Database {
         | "3 John"
         | "Jude"
         | "Rev"
-      NOTE_TYPE: "QT" | "SERMON" | "THANKS" | "DAIRY" | "CONTEMPLATION"
+      NOTE_TYPE: "QT" | "SERMON" | "THANKS" | "DIARY" | "CONTEMPLATION"
       SERVICE_TYPE:
         | "SUNDAY SERVICE"
         | "WEDNESDAY SERVICE"

@@ -6,6 +6,8 @@ import WorshipCard from "../WorshipCard";
 import { useQuery } from "@tanstack/react-query";
 import { getTodayWorships } from "@/supabase/worships";
 import { format } from "date-fns";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type TodayWorshipListProps = {}
 
@@ -22,15 +24,31 @@ const TodayWorshipList = ({}: TodayWorshipListProps) => {
   return (
     <div>
       {isLoading || isFetching ? (
-        <div>로딩중..</div>
+        <Card className="h-[148px]">
+          <CardHeader>
+            <CardTitle>
+              <Skeleton className="w-[110px] h-6"/>
+            </CardTitle>
+            <CardDescription>
+              <Skeleton className="w-[230px] h-5"/>
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Skeleton className="w-[110px] h-[19px]"/>  
+          </CardContent>
+        </Card>
       ) : (
         <>
-          {data ? (
+          {data && data.length !== 0 ? (
             <div className="flex flex-col space-y-3">
               {data.map(worship => <WorshipCard key={worship.id} worship={worship} />)}
             </div>
           ) : (
-            <div>데이터 없어요</div>
+            <Card className="h-[148px]">
+              <CardContent className="h-full flex justify-center items-center">
+                <span>예배 데이터가 없습니다</span>
+              </CardContent>
+            </Card>
           )}
         </>
       )}
