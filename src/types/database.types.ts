@@ -9,6 +9,33 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      bibles: {
+        Row: {
+          book: Database["public"]["Enums"]["BOOK_TYPE"]
+          chapter: string
+          content: string
+          id: string
+          verse: number
+          version: Database["public"]["Enums"]["VERSON_OF_BIBLE"]
+        }
+        Insert: {
+          book: Database["public"]["Enums"]["BOOK_TYPE"]
+          chapter: string
+          content: string
+          id?: string
+          verse: number
+          version?: Database["public"]["Enums"]["VERSON_OF_BIBLE"]
+        }
+        Update: {
+          book?: Database["public"]["Enums"]["BOOK_TYPE"]
+          chapter?: string
+          content?: string
+          id?: string
+          verse?: number
+          version?: Database["public"]["Enums"]["VERSON_OF_BIBLE"]
+        }
+        Relationships: []
+      }
       dabar: {
         Row: {
           bible_reference: string
@@ -18,7 +45,7 @@ export interface Database {
           created_at: string
           id: number
           scripture_passage: string
-          verses: string[]
+          verses: number[]
         }
         Insert: {
           bible_reference: string
@@ -28,7 +55,7 @@ export interface Database {
           created_at?: string
           id?: number
           scripture_passage: string
-          verses: string[]
+          verses: number[]
         }
         Update: {
           bible_reference?: string
@@ -38,7 +65,7 @@ export interface Database {
           created_at?: string
           id?: number
           scripture_passage?: string
-          verses?: string[]
+          verses?: number[]
         }
         Relationships: [
           {
@@ -116,43 +143,61 @@ export interface Database {
       notes: {
         Row: {
           book: Database["public"]["Enums"]["BOOK_TYPE"] | null
-          chapter: string | null
+          chapters: string[] | null
           content: string
           created_at: string
           date: string
-          id: number
-          title: string
+          deleted_at: string | null
+          id: string
+          is_deleted: boolean
+          script: string | null
+          service_type: Database["public"]["Enums"]["SERVICE_TYPE"] | null
+          tags: string[] | null
+          title: string | null
+          type: Database["public"]["Enums"]["NOTE_TYPE"]
+          updated_at: string
           user_id: string
-          verse: string | null
         }
         Insert: {
           book?: Database["public"]["Enums"]["BOOK_TYPE"] | null
-          chapter?: string | null
-          content?: string
+          chapters?: string[] | null
+          content: string
           created_at?: string
           date: string
-          id?: number
-          title?: string
+          deleted_at?: string | null
+          id?: string
+          is_deleted?: boolean
+          script?: string | null
+          service_type?: Database["public"]["Enums"]["SERVICE_TYPE"] | null
+          tags?: string[] | null
+          title?: string | null
+          type: Database["public"]["Enums"]["NOTE_TYPE"]
+          updated_at?: string
           user_id: string
-          verse?: string | null
         }
         Update: {
           book?: Database["public"]["Enums"]["BOOK_TYPE"] | null
-          chapter?: string | null
+          chapters?: string[] | null
           content?: string
           created_at?: string
           date?: string
-          id?: number
-          title?: string
+          deleted_at?: string | null
+          id?: string
+          is_deleted?: boolean
+          script?: string | null
+          service_type?: Database["public"]["Enums"]["SERVICE_TYPE"] | null
+          tags?: string[] | null
+          title?: string | null
+          type?: Database["public"]["Enums"]["NOTE_TYPE"]
+          updated_at?: string
           user_id?: string
-          verse?: string | null
         }
         Relationships: [
           {
             foreignKeyName: "notes_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: "profiles"
+            referencedRelation: "users"
             referencedColumns: ["id"]
           }
         ]
@@ -203,6 +248,101 @@ export interface Database {
             columns: ["id"]
             isOneToOne: true
             referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      tags: {
+        Row: {
+          created_at: string
+          id: string
+          note_id: string | null
+          tag: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          note_id?: string | null
+          tag?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          note_id?: string | null
+          tag?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tags_note_id_fkey"
+            columns: ["note_id"]
+            isOneToOne: false
+            referencedRelation: "notes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tags_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      worships: {
+        Row: {
+          book: Database["public"]["Enums"]["BOOK_TYPE"] | null
+          chapter: string[] | null
+          created_at: string
+          id: string
+          invited_lecturer: string | null
+          pastor_id: number
+          script: string | null
+          serviceDate: string
+          serviceDateString: string
+          serviceType: Database["public"]["Enums"]["SERVICE_TYPE"]
+          title: string | null
+          verses: number[] | null
+          youtube_url: string
+        }
+        Insert: {
+          book?: Database["public"]["Enums"]["BOOK_TYPE"] | null
+          chapter?: string[] | null
+          created_at?: string
+          id?: string
+          invited_lecturer?: string | null
+          pastor_id: number
+          script?: string | null
+          serviceDate: string
+          serviceDateString: string
+          serviceType: Database["public"]["Enums"]["SERVICE_TYPE"]
+          title?: string | null
+          verses?: number[] | null
+          youtube_url: string
+        }
+        Update: {
+          book?: Database["public"]["Enums"]["BOOK_TYPE"] | null
+          chapter?: string[] | null
+          created_at?: string
+          id?: string
+          invited_lecturer?: string | null
+          pastor_id?: number
+          script?: string | null
+          serviceDate?: string
+          serviceDateString?: string
+          serviceType?: Database["public"]["Enums"]["SERVICE_TYPE"]
+          title?: string | null
+          verses?: number[] | null
+          youtube_url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "worships_pastor_id_fkey"
+            columns: ["pastor_id"]
+            isOneToOne: false
+            referencedRelation: "pastors"
             referencedColumns: ["id"]
           }
         ]
@@ -282,12 +422,21 @@ export interface Database {
         | "3 John"
         | "Jude"
         | "Rev"
-      NOTE_TYPE: "QT" | "SERMON"
+      NOTE_TYPE: "QT" | "SERMON" | "THANKS" | "DAIRY" | "CONTEMPLATION"
       SERVICE_TYPE:
         | "SUNDAY SERVICE"
         | "WEDNESDAY SERVICE"
         | "FRIDAY SERVICE"
         | "DAYBREAK SERVICE"
+        | "SPECIAL DAYBREAK SERVICE"
+        | "SPECIAL SERVICE"
+      VERSON_OF_BIBLE:
+        | "개역한글"
+        | "개역개정"
+        | "표준새번역"
+        | "KJV"
+        | "NIV"
+        | "NLT"
     }
     CompositeTypes: {
       [_ in never]: never

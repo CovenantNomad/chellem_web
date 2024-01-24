@@ -6,6 +6,7 @@ import DabarAlert from "@/components/domains/dabar/DabarAlert";
 import DabarQuizQuestion from "@/components/domains/dabar/DabarQuizQuestion/DabarQuizQuestion";
 import DabarQuizResult from "@/components/domains/dabar/DabarQuizResult/DabarQuizResult";
 import DabarQuizTextArea from "@/components/domains/dabar/DabarQuizTextArea";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { generateCorrectAnswer } from "@/lib/utils";
 import { getDabarById } from "@/supabase/dabar";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
@@ -89,17 +90,19 @@ const QuizDetailPage = ({ params }: { params: { id: string }}) => {
           <ChevronLeftIcon className='h-6 w-6 mr-2' onClick={() => router.back()}/>
           <h2 className='text-xl'>퀴즈</h2>
         </div>
-        <div>
+        <div className="h-[calc(100vh-72px)] overflow-hidden">
           {!isChecking ? (
             <>
               {data && data.data && displayWords ? (
-                <div className="">
-                  <DabarQuizQuestion 
-                    bible_reference={data.data?.bible_reference}
-                    displayWords={displayWords}
-                  />
-                  <Spacer className="h-2" />
-                  <DabarAlert />
+                <div className="h-full">
+                  <ScrollArea className="bg-red-50 h-full">
+                    <DabarQuizQuestion 
+                      bible_reference={data.data?.bible_reference}
+                      displayWords={displayWords}
+                    />
+                    <Spacer className="h-2" />
+                    <DabarAlert />
+                  </ScrollArea>
                   <DabarQuizTextArea 
                     numOfWords={numOfWords}
                     numOfLine={numOfLine}

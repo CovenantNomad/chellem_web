@@ -7,7 +7,6 @@ import Providers from './providers'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import SignInClientComponent from '@/components/commons/SignIn';
 import { Toaster } from '@/components/ui/toaster';
-import Container from '@/components/commons/Container/Container';
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
@@ -36,7 +35,7 @@ export default async function RootLayout({
         <Providers>
         {session ? (
             <>
-              <main className='relative max-w-[600px] mx-auto pb-[78px]'>
+              <main className='relative max-w-[600px] mx-auto'>
                 {children}
               </main>
               <Toaster />

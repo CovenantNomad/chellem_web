@@ -13,10 +13,10 @@ const BottomTab = ({}: BottomTabProps) => {
             <span className="text-caption">홈</span>
           </li>
         </Link>
-        <Link href={'/bible'} className="w-full cursor-pointer">
+        <Link href={'/worship'} className="w-full cursor-pointer">
           <li className="flex flex-col items-center space-y-1">
             <HeartIcon className="h-5 w-5"/>
-            <span className="text-caption">말씀</span>
+            <span className="text-caption">예배</span>
           </li>
         </Link>
         <Link href={'/pray'} className="w-full cursor-pointer">
