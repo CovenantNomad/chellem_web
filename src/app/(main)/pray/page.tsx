@@ -4,7 +4,8 @@ import Header from "@/components/commons/Header";
 
 type PrayPageProps = {}
 
-const PrayPage = ({}: PrayPageProps) => {
+const PrayPage = async ({}: PrayPageProps) => {
+
   return (
     <>
       <Header />

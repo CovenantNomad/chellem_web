@@ -8,7 +8,8 @@ import TodayWorshipList from "@/components/domains/worship/TodayWorshipList";
 
 type WorshipPageProps = {}
 
-const WorshipPage = ({}: WorshipPageProps) => {
+const WorshipPage = async ({}: WorshipPageProps) => {
+
   return (
     <>
       <Header />
