@@ -1,5 +1,6 @@
 import { Enums, Tables } from './../types/database.types';
 import { type ClassValue, clsx } from "clsx"
+import { cookies } from 'next/headers';
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -322,4 +323,14 @@ export const convertBookType = (inputBook: string) => {
     default:
       return null
   }
+}
+
+
+export async function getCookieData() {
+  const cookieData = cookies().getAll()
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      resolve(cookieData)
+    }, 1000)
+  )
 }

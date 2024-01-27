@@ -1,5 +1,3 @@
-'use client'
-
 import BottomTab from "@/components/commons/BottomTab";
 import Container from "@/components/commons/Container/Container";
 import Header from "@/components/commons/Header";

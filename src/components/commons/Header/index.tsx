@@ -5,7 +5,8 @@ import { cookies } from "next/headers"
 type indexProps = {}
 
 const Header = async ({}: indexProps) => {
-  const supabase = createServerComponentClient({ cookies })
+  const cookieStore = cookies()
+  const supabase = createServerComponentClient({ cookies: () => cookieStore })
   const {
     data: { user },
   } = await supabase.auth.getUser()
