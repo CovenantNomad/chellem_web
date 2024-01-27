@@ -5,8 +5,9 @@ import Spacer from "@/components/commons/Spacer";
 import DabarMemorizedList from "@/components/domains/dabar/DabarMemorizedList";
 import DabarTabs from "@/components/domains/dabar/DabarTabs/DabarTabs";
 import SectionHeader from "@/components/commons/SectionHeader";
+import { cookies } from "next/headers";
 
-const MemorizedPage = () => {
+const MemorizedPage = async () => {
 
   return (
     <>

@@ -8,7 +8,7 @@ import SectionHeader from "@/components/commons/SectionHeader";
 
 type QuizMainPageProps = {}
 
-const QuizMainPage = ({}: QuizMainPageProps) => {
+const QuizMainPage = async ({}: QuizMainPageProps) => {
 
   return (
     <>

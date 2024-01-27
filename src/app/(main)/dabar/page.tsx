@@ -9,17 +9,18 @@ import SectionHeader from '@/components/commons/SectionHeader';
 import MainContainer from '@/components/commons/MainContainer/MainContainer';
 
 
-const DabarPage = () => {  
+const DabarPage = async () => {  
+
   return (
     <MainContainer>
       <Header />
       <Container>
-        <div>
+        <>
           <Spacer className='h-4' />
           <DabarTabs />
           <SectionHeader title={'다바르 암송 카드'} />
           <DabarCollectionCards baseUrl={'/dabar/collections/'}/>
-        </div>
+        </>
       </Container>
       <BottomTab />
     </MainContainer>
