@@ -9,13 +9,13 @@ type BibleScriptListProps = {
   book: Enums<'BOOK_TYPE'>
   firstChapter: string;
   secondChapter?: string;
-  firstStart: string;
-  firstEnd?: string;
-  secondStart?: string;
-  secondEnd?: string;
+  firstStart: number;
+  firstEnd?: number;
+  secondStart?: number;
+  secondEnd?: number;
 }
 
-const BibleScriptList = ({ script, book, firstChapter, secondChapter, firstStart, firstEnd, secondStart, secondEnd}: BibleScriptListProps) => {
+const BibleScriptList = ({ book, firstChapter, secondChapter, firstStart, firstEnd, secondStart, secondEnd}: BibleScriptListProps) => {
   const { isLoading, isFetching, data } = useQuery({
     queryKey: ['getBibleScriptList', book, firstChapter, secondChapter, firstStart, firstEnd, secondStart, secondEnd],
     queryFn: () => getBibleScriptList({book, firstChapter, secondChapter, firstStart, firstEnd, secondStart, secondEnd}),
@@ -25,14 +25,11 @@ const BibleScriptList = ({ script, book, firstChapter, secondChapter, firstStart
   })
 
   return (
-    <div>
+    <div className="pb-16">
       {isLoading || isFetching ? (
         <div>로딩중...</div>
       ) : (
         <>
-          <div className="py-5 my-2 border text-sm text-center">
-            본문: {script}
-          </div>
           {data ? (
             <div className="divide-y">
               {data.map(verse => (
