@@ -23,7 +23,7 @@ export const getTodayWorships = async (selectedDate: string) => {
   return worship
 }
 
-export const getBibleScriptList = async ({ book, firstChapter, secondChapter, firstStart, firstEnd, secondStart, secondEnd} : { book: string, firstChapter: string, secondChapter?: string, firstStart: string, firstEnd?: string, secondStart?: string, secondEnd?: string }) => {
+export const getBibleScriptList = async ({ book, firstChapter, secondChapter, firstStart, firstEnd, secondStart, secondEnd} : { book: string, firstChapter: string, secondChapter?: string, firstStart: number, firstEnd?: number, secondStart?: number, secondEnd?: number }) => {
   let tempVerseList = []
 
   if (book && firstChapter && firstStart) {
@@ -35,8 +35,8 @@ export const getBibleScriptList = async ({ book, firstChapter, secondChapter, fi
           .select('id, book, chapter, verse, content')
           .eq('book', book)
           .eq('chapter', firstChapter)
-          .gte('verse', Number(firstStart))
-          .lte('verse', Number(firstEnd))
+          .gte('verse', firstStart)
+          .lte('verse', firstEnd)
         
         if (verseOne) {
           tempVerseList.push(...verseOne)
@@ -47,8 +47,8 @@ export const getBibleScriptList = async ({ book, firstChapter, secondChapter, fi
           .select('id, book, chapter, verse, content')
           .eq('book', book)
           .eq('chapter', secondChapter)
-          .gte('verse', Number(secondStart))
-          .lte('verse', Number(secondEnd))
+          .gte('verse', secondStart)
+          .lte('verse', secondEnd)
         
         if (verseTwo) {
           tempVerseList.push(...verseTwo)
@@ -60,8 +60,8 @@ export const getBibleScriptList = async ({ book, firstChapter, secondChapter, fi
           .select('id, book, chapter, verse, content')
           .eq('book', book)
           .eq('chapter', firstChapter)
-          .gte('verse', Number(firstStart))
-          .lte('verse', Number(firstEnd))
+          .gte('verse', firstStart)
+          .lte('verse', firstEnd)
         
         if (verseOne) {
           tempVerseList.push(...verseOne)
@@ -71,8 +71,8 @@ export const getBibleScriptList = async ({ book, firstChapter, secondChapter, fi
           .from('bibles')
           .select('id, book, chapter, verse, content')
           .eq('book', book)
-          .eq('chapter', Number(secondChapter))
-          .eq('verse', Number(secondStart))
+          .eq('chapter', secondChapter)
+          .eq('verse', secondStart)
   
         if (verseTwo) {
           tempVerseList.push(...verseTwo)
@@ -88,8 +88,8 @@ export const getBibleScriptList = async ({ book, firstChapter, secondChapter, fi
           .select('id, book, chapter, verse, content')
           .eq('book', book)
           .eq('chapter', firstChapter)
-          .gte('verse', Number(firstStart))
-          .lte('verse', Number(firstEnd))
+          .gte('verse', firstStart)
+          .lte('verse', firstEnd)
         
         return verse
     
@@ -98,8 +98,8 @@ export const getBibleScriptList = async ({ book, firstChapter, secondChapter, fi
           .from('bibles')
           .select('id, book, chapter, verse, content')
           .eq('book', book)
-          .eq('chapter', Number(firstChapter))
-          .eq('verse', Number(firstStart))
+          .eq('chapter', firstChapter)
+          .eq('verse', firstStart)
     
         return verse
       }

@@ -6,9 +6,10 @@ import QtNoteForm from "../QtNoteForm";
 import SermonNoteForm from "../SermonNoteForm/SermonNoteForm";
 import { TWorshipData } from "@/types/worship.types";
 import NoteInputOptions from "../NoteInputOptions";
+import { Tables } from "@/types/database.types";
 
 type QtAndSermonNoteBlockProps = {
-  worship: TWorshipData
+  worship: Tables<'worships'>
 }
 
 const QtAndSermonNoteBlock = ({ worship }: QtAndSermonNoteBlockProps) => {
@@ -21,12 +22,12 @@ const QtAndSermonNoteBlock = ({ worship }: QtAndSermonNoteBlockProps) => {
     {
       id: 1,
       name: '제목',
-      isVisible: worship.title ? false : true,
+      isVisible: true,
     },
     {
       id: 2,
       name: '본문',
-      isVisible: worship.script ? false : true,
+      isVisible: true,
     },
   ])
 

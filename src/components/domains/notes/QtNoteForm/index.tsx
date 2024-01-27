@@ -191,7 +191,7 @@ const QTNoteForm = ({ viewOptions, script, book, chapters, serviceType, title, d
                   <FormControl>
                     <textarea 
                       {...field}
-                      rows={14}
+                      rows={20}
                       placeholder="내용을 입력해주세요"
                       className="flex min-h-[80px] w-full border-input bg-background ring-offset-background placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 border rounded-md py-4 px-3 text-sm outline-none appearance-none"
                     />
