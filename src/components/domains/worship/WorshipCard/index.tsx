@@ -13,7 +13,7 @@ const WorshipCard = ({ worship }: { worship: TWorshipCard }) => {
           <CardDescription>{worship.title && worship.title + " | "}  {worship.script}</CardDescription>
         </CardHeader>
         <CardContent>
-          <div>
+          <div className="text-sm">
             {worship.pastors?.id === 999 ? (
               <span>{worship.pastors.name}{' - '}{worship.invited_lecturer}</span>
             ) : (

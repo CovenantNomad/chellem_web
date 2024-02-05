@@ -23,6 +23,28 @@ export const getTodayWorships = async (selectedDate: string) => {
   return worship
 }
 
+export const getWorshipsByType = async (serviceType: string) => {
+  const { data: worship } = await supabase
+  .from('worships')
+  .select(`
+    id,
+    script,
+    title,
+    serviceDate,
+    serviceType,
+    invited_lecturer,
+    pastors (
+      id,
+      name, 
+      position
+    )
+  `)
+  .eq('serviceType', serviceType)
+  .order('serviceDate', { ascending: false })
+
+  return worship
+}
+
 export const getBibleScriptList = async ({ book, firstChapter, secondChapter, firstStart, firstEnd, secondStart, secondEnd} : { book: string, firstChapter: string, secondChapter?: string, firstStart: number, firstEnd?: number, secondStart?: number, secondEnd?: number }) => {
   let tempVerseList = []
 

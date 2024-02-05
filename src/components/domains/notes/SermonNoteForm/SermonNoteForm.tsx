@@ -98,7 +98,7 @@ const SermonNoteForm = ({ viewOptions, script, book, chapters, serviceType, titl
   }, [isLoading, isFetching, data])
 
   return (
-    <div className="pt-3 px-2">
+    <div>
       {isLoading || isFetching ? (
         <div>
           <div className="animate-pulse h-10 py-2 bg-gray-100" />

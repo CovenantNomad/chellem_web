@@ -23,7 +23,7 @@ const CalendarStrip = ({}: CalendarStripProps) => {
               className="disabled:cursor-not-allowed"
             >
               <span className={`flex justify-center items-center text-sm px-2 py-1`}>{getDayText(date.getDay())}</span>
-              <span className={`block text-sm px-4 py-3 mt-1 rounded-full ${isSelected ? 'bg-blue-600 text-white' : 'text-black'} group-hover:bg-gray-200`}>{date.getDate()}</span>
+              <span className={`block text-[14px] leading-[40px] px-4 mt-1 rounded-full ${isSelected ? 'bg-blue-600 text-white' : 'text-black'} group-hover:bg-gray-200`}>{date.getDate()}</span>
             </button>
           </div>
         )

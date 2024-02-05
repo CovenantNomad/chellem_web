@@ -1,8 +1,8 @@
-import { addDays, format, startOfWeek } from "date-fns";
+import { addDays, startOfWeek } from "date-fns";
 
 export function getWeekDates() {
   const today = new Date();
-  const startOfThisWeek = startOfWeek(today, { weekStartsOn: 1 }); // Set week start to Monday
+  const startOfThisWeek = startOfWeek(today, { weekStartsOn: 0 }); // Set week start to Monday
   const weekDates = [];
 
   for (let i = 0; i < 7; i++) {
