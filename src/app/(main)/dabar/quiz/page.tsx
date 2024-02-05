@@ -14,13 +14,11 @@ const QuizMainPage = async ({}: QuizMainPageProps) => {
     <>
       <Header />
       <Container>
-        <div>
-          <Spacer className='h-4' />
-          <DabarTabs />
-          <SectionHeader title={'다바르 암송 테스트'} />
+        <Spacer className='h-4' />
+        <DabarTabs />
+        <SectionHeader title={'다바르 암송 테스트'} />
         <DabarCollectionCards baseUrl={'/dabar/quiz/collections/'} />
-        </div>
-        </Container>
+      </Container>
       <BottomTab />
     </>
   );

@@ -95,7 +95,7 @@ const QuizDetailPage = ({ params }: { params: { id: string }}) => {
             <>
               {data && data.data && displayWords ? (
                 <div className="h-full">
-                  <ScrollArea className="bg-red-50 h-full">
+                  <ScrollArea className="h-full">
                     <DabarQuizQuestion 
                       bible_reference={data.data?.bible_reference}
                       displayWords={displayWords}

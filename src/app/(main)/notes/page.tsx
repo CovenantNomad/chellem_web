@@ -1,5 +1,6 @@
 import BottomTab from "@/components/commons/BottomTab";
 import Container from "@/components/commons/Container/Container";
+import InnerContainer from "@/components/commons/Container/InnerContainer/InnerContainer";
 import Header from "@/components/commons/Header";
 import MainContainer from "@/components/commons/MainContainer/MainContainer";
 import Spacer from "@/components/commons/Spacer";
@@ -14,9 +15,11 @@ const NotesPage = async ({}: NotesProps) => {
     <MainContainer>
       <Header />
       <Container>
-        <NoteHeader />
-        <Spacer className="h-4" />
-        <NoteCollectionCards />
+        <InnerContainer>
+          <NoteHeader />
+          <Spacer className="h-4" />
+          <NoteCollectionCards />
+        </InnerContainer>
       </Container>
       <BottomTab />
     </MainContainer>

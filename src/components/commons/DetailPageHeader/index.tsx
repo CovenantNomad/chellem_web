@@ -1,15 +1,17 @@
 'use client'
 
+import { cn } from "@/lib/utils";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
+import React from "react";
 
-const DetailPageHeader = ({ title }: { title: string }) => {
+const DetailPageHeader = ({ title, className } : { title: string, className?: React.ComponentProps<'span'>['className'] }) => {
   const router = useRouter()
   
   return (
-    <div className='flex items-center pt-4 pb-3 my-2 px-2'>
+    <div className={cn('flex items-center py-4 px-5', className)}>
       <ChevronLeftIcon className='h-5 w-5 mr-2 cursor-pointer' onClick={() => router.back()}/>
-      <h2 className='text-base'>{title}</h2>
+      <span className='text-base'>{title}</span>
     </div>
   );
 };

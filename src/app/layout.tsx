@@ -7,6 +7,7 @@ import Providers from './providers'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import SignInClientComponent from '@/components/commons/SignIn';
 import { Toaster } from '@/components/ui/toaster';
+import { cn } from '@/lib/utils';
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
@@ -31,7 +32,7 @@ export default async function RootLayout({
 
   return (
     <html lang="kr">
-      <body className={montserrat.className}>
+      <body className={cn(montserrat.className, 'bg-[#f4f6f8]')}>
         <Providers>
         {session ? (
             <>
