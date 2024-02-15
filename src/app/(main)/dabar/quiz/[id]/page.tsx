@@ -8,7 +8,7 @@ import DabarQuizResult from "@/components/domains/dabar/DabarQuizResult/DabarQui
 import DabarQuizTextArea from "@/components/domains/dabar/DabarQuizTextArea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { generateCorrectAnswer } from "@/lib/utils";
-import { getDabarById } from "@/supabase/dabar";
+import { getDabarById } from "@/lib/supabase/dabar";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 
 import { useQuery } from "@tanstack/react-query";

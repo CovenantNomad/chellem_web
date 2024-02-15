@@ -5,7 +5,7 @@ import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const DetailPageHeader = ({ title, className } : { title: string, className?: React.ComponentProps<'span'>['className'] }) => {
+const DetailPageHeader = ({ title, className } : { title: string, className?: React.ComponentProps<'div'>['className'] }) => {
   const router = useRouter()
   
   return (

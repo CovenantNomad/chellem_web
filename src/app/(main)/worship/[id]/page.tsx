@@ -4,7 +4,6 @@ import QtAndSermonNoteBlock from "@/components/domains/notes/QtAndSermonNoteBloc
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { parseScriptureInput } from "@/lib/utils";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
@@ -14,13 +13,15 @@ const WorshipDetailPage = async ({ params }: { params: { id: string } }) => {
   const { data } = await worshipQuery
 
   return (
-    <div className="h-screen overflow-hidden">
+    <div>
       <DetailPageHeader title={'오늘의 예배'} className="bg-white" />
-      <Tabs defaultValue="script" className="h-full w-full max-w-[600px] mt-2">
-        <TabsList className="h-8 w-full rounded-none">
-          <TabsTrigger value="script">예배정보</TabsTrigger>
-          <TabsTrigger value="notes">노트</TabsTrigger>
-        </TabsList>
+      <Tabs defaultValue="script" className="h-full w-full max-w-[600px]">
+        <div className="flex justify-center bg-white py-2">
+          <TabsList className="bg-muted rounded-[20px] p-1">
+            <TabsTrigger value="script" className="rounded-[20px]">예배정보</TabsTrigger>
+            <TabsTrigger value="notes" className="rounded-[20px]">노트</TabsTrigger>
+          </TabsList>
+        </div>
         <TabsContent value="script">
           {data ? (
             <div>
@@ -57,7 +58,7 @@ const WorshipDetailPage = async ({ params }: { params: { id: string } }) => {
                       secondEnd={data.chapter.length == 4 ? data.verses[3] : undefined}
                     />
                   ) : (
-                    <div>본문이 없어요.. 나중에 업데이트하는거 만들게요..</div>
+                    <div>본문이 없습니다...</div>
                   )}
                 </ScrollArea>
               </div>
@@ -66,7 +67,7 @@ const WorshipDetailPage = async ({ params }: { params: { id: string } }) => {
             <div>예배정보가 없습니다</div>
           )}
         </TabsContent>
-        <TabsContent value="notes" className='h-full'>
+        <TabsContent value="notes" className="">
           {data && <QtAndSermonNoteBlock worship={data} />}
         </TabsContent>
       </Tabs>

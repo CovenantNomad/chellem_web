@@ -31,8 +31,8 @@ const DabarTabs = () => {
     >
       <TabsList className="w-full">
         <TabsTrigger value="card" className="flex-1">암송카드</TabsTrigger>
-        <TabsTrigger value="quiz" className="flex-1">테스트</TabsTrigger>
-        <TabsTrigger value="memorized" className="flex-1">내가 외운 말씀</TabsTrigger>
+        {/* <TabsTrigger value="quiz" className="flex-1">테스트</TabsTrigger> */}
+        {/* <TabsTrigger value="memorized" className="flex-1">내가 외운 말씀</TabsTrigger> */}
       </TabsList>
     </Tabs>
   );

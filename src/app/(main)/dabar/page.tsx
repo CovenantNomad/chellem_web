@@ -13,7 +13,7 @@ import InnerContainer from '@/components/commons/Container/InnerContainer/InnerC
 const DabarPage = async () => {  
 
   return (
-    <MainContainer>
+    <MainContainer className='bg-white'>
       <Header />
       <Container>
         <InnerContainer>

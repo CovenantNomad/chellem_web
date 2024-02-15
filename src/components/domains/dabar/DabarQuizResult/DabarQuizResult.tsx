@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { createDabarRecord } from "@/supabase/dabar";
+import { createDabarRecord } from "@/lib/supabase/dabar";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { Dispatch, SetStateAction, useState } from "react";

@@ -1,7 +1,8 @@
+import { cn } from "@/lib/utils";
 
-const InnerContainer = ({ children }: { children: React.ReactNode }) => {
+const InnerContainer = ({ children, className }: { children: React.ReactNode, className?: React.ComponentProps<'div'>['className'] }) => {
   return (
-    <div className="px-5">
+    <div className={cn("px-5", className)}>
       {children}
     </div>
   );

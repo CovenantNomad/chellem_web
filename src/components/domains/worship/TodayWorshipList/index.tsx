@@ -4,7 +4,7 @@ import { worshipState } from "@/stores/worshipState";
 import { useRecoilState } from "recoil";
 import WorshipCard from "../WorshipCard";
 import { useQuery } from "@tanstack/react-query";
-import { getTodayWorships } from "@/supabase/worships";
+import { getTodayWorships } from "@/lib/supabase/worships";
 import { format } from "date-fns";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";

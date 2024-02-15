@@ -14,10 +14,10 @@ export default async function Home() {
     <MainContainer>
       <Header />
       <Container>
-        <Spacer className='h-4' />
+        <Spacer className='h-2' />
         <LinkNewNote />
-        <Spacer className='h-4' />
-        <FeedCard className="my-1">
+        <Spacer className='h-2' />
+        <FeedCard>
           <FeedCardHeader>
             <SectionHeader title={'오늘의 예배'} date={new Date()} />
           </FeedCardHeader>

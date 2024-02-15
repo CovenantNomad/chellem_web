@@ -9,7 +9,7 @@ const Header = async () => {
   } = await supabase.auth.getUser()
 
   return (
-    <header className="">
+    <header className="bg-white">
       <div className="w-full max-w-[600px] h-[60px] flex justify-between items-center px-4">
         <h1 className="text-xl font-black uppercase">Chellem</h1>
         <Avatar>

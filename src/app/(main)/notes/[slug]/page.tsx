@@ -10,9 +10,10 @@ import { cookies } from "next/headers";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ko } from 'date-fns/locale';
-import { filterItemsByDate } from "@/lib/utils";
-import { getNotes } from "@/supabase/notes";
+import { cn, filterItemsByDate } from "@/lib/utils";
+import { getNotes } from "@/lib/supabase/notes";
 import Link from "next/link";
+import InnerContainer from "@/components/commons/Container/InnerContainer/InnerContainer";
 
 const NotePage = ({ params }: { params: { slug: Enums<'NOTE_TYPE'> } }) => {
   // const searchParams = useSearchParams();
@@ -58,79 +59,78 @@ const NotePage = ({ params }: { params: { slug: Enums<'NOTE_TYPE'> } }) => {
 
   return (
     <Container>
-      <DetailPageHeader title="폴더" />
-      <h1 className="text-xl font-bold">{getPageTite(params.slug)} {data && <span className="text-sm ml-1 font-normal">{data.length}</span>}</h1>
-      <div className="my-3">
-        <Input type="text" placeholder="검색 (개발중..)" />
-      </div>
-      {isLoading || isFetching ? (
-        <div>로딩중..</div>
-      ) : (
-        <>
-          {data && data.length !== 0 ? (
-            <>
-              {lastSevenDaysItemLists && (
-                <div className="mt-5">
-                  <h4 className="font-medium">이전 7일</h4>
-                  <div className="flex flex-col space-y-2 mt-2">
-                    {lastSevenDaysItemLists.map(note => (
-                      <Link key={note.id} href={`/notes/${params.slug}/${note.id}`}>
-                        <div className="border px-4 py-2 rounded-lg">
-                          <div className="font-semibold">{note.title}</div>
-                          <div className="text-sm text-gray-500 overflow-hidden text-ellipsis whitespace-nowrap mt-1">
-                            <span className="mr-3">{format(note.date, 'EEEE', {locale: ko})}</span>
-                            <span>{note.content}</span>
+      <DetailPageHeader title="폴더" className="bg-white" />
+      <InnerContainer className="h-full bg-white">
+        <h1 className="text-xl font-bold pb-[5px]">{getPageTite(params.slug)} {data && <span className="text-sm ml-1 font-normal">{data.length}</span>}</h1>
+        {isLoading || isFetching ? (
+          <div>로딩중..</div>
+        ) : (
+          <div>
+            {data && data.length !== 0 ? (
+              <>
+                {lastSevenDaysItemLists && (
+                  <div className="mt-5">
+                    <h4 className="font-medium pt-2">이전 7일</h4>
+                    <div className={cn('flex flex-col space-y-2 mt-2', lastSevenDaysItemLists.length !== 0 && 'pb-4')}>
+                      {lastSevenDaysItemLists.map(note => (
+                        <Link key={note.id} href={`/notes/${params.slug}/${note.id}`}>
+                          <div className="border px-4 py-2 rounded-lg">
+                            <div className="font-semibold">{note.title}</div>
+                            <div className="text-sm text-gray-500 overflow-hidden text-ellipsis whitespace-nowrap mt-1">
+                              <span className="mr-3">{format(note.date, 'EEEE', {locale: ko})}</span>
+                              <span>{note.content}</span>
+                            </div>
                           </div>
-                        </div>
-                      </Link>
-                    ))}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
-              {lastThirtyDaysItemLists && lastThirtyDaysItemLists.length !== 0 && (
-                <div className="mt-5">
-                  <h4 className="font-medium">이전 30일</h4>
-                  <div className="flex flex-col space-y-2 mt-2">
-                    {lastThirtyDaysItemLists.map(note => (
-                      <Link key={note.id} href={`/notes/${params.slug}/${note.id}`}>
-                        <div className="border px-4 py-2 rounded-lg">
-                          <div>{note.title}</div>
-                          <div className="text-sm text-gray-500 overflow-hidden text-ellipsis whitespace-nowrap mt-1">
-                            <span className="mr-3">{format(note.date, 'yyyy. MM. dd')}</span>
-                            <span>{note.content}</span>
+                )}
+                {lastThirtyDaysItemLists && lastThirtyDaysItemLists.length !== 0 && (
+                  <div className="mt-5">
+                    <h4 className="font-medium pt-2">이전 30일</h4>
+                    <div className={cn('flex flex-col space-y-2 mt-2', lastThirtyDaysItemLists.length !== 0 && 'pb-4')}>
+                      {lastThirtyDaysItemLists.map(note => (
+                        <Link key={note.id} href={`/notes/${params.slug}/${note.id}`}>
+                          <div className="border px-4 py-2 rounded-lg">
+                            <div>{note.title}</div>
+                            <div className="text-sm text-gray-500 overflow-hidden text-ellipsis whitespace-nowrap mt-1">
+                              <span className="mr-3">{format(note.date, 'yyyy. MM. dd')}</span>
+                              <span>{note.content}</span>
+                            </div>
                           </div>
-                        </div>
-                      </Link>
-                    ))}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
-              {olderThanThirtyDaysItemLists && olderThanThirtyDaysItemLists.length !== 0 &&(
-                <div className="mt-5">
-                  <h4 className="font-medium">모든 데이터</h4>
-                  <div className="flex flex-col space-y-2 mt-2">
-                    {olderThanThirtyDaysItemLists.map(note => (
-                      <Link key={note.id} href={`/notes/${params.slug}/${note.id}`}>
-                        <div className="border px-4 py-2 rounded-lg">
-                          <div className="font-semibold">{note.title}</div>
-                          <div className="text-sm text-gray-500 overflow-hidden text-ellipsis whitespace-nowrap mt-1">
-                            <span className="mr-2">{format(note.date, 'EEEE', {locale: ko})}</span>
-                            <span className="">{note.content}</span>
+                )}
+                {olderThanThirtyDaysItemLists && olderThanThirtyDaysItemLists.length !== 0 &&(
+                  <div className="mt-5">
+                    <h4 className="font-medium">모든 데이터</h4>
+                    <div className={cn('flex flex-col space-y-2 mt-2', olderThanThirtyDaysItemLists.length !== 0 && 'pb-4')}>
+                      {olderThanThirtyDaysItemLists.map(note => (
+                        <Link key={note.id} href={`/notes/${params.slug}/${note.id}`}>
+                          <div className="border px-4 py-2 rounded-lg">
+                            <div className="font-semibold">{note.title}</div>
+                            <div className="text-sm text-gray-500 overflow-hidden text-ellipsis whitespace-nowrap mt-1">
+                              <span className="mr-2">{format(note.date, 'EEEE', {locale: ko})}</span>
+                              <span className="">{note.content}</span>
+                            </div>
                           </div>
-                        </div>
-                      </Link>
-                    ))}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
-            </>
-          ) : (
-            <div className="py-2 mt-5 rounded-lg ">
-              <span className="text-sm">작성 된 노트가 없습니다</span>
-            </div>
-          )}
-        </>
-      )}
+                )}
+              </>
+            ) : (
+              <div className="py-2 mt-5 rounded-lg ">
+                <span className="text-sm">작성 된 노트가 없습니다</span>
+              </div>
+            )}
+          </div>
+        )}
+      </InnerContainer>
     </Container>
   );
 };

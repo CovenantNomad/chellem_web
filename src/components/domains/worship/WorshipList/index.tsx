@@ -3,9 +3,10 @@
 import { useState } from "react";
 import WorshipTypeChips from "../WorshipTypeChips";
 import { useQuery } from "@tanstack/react-query";
-import { getWorshipsByType } from "@/supabase/worships";
+import { getWorshipsByType } from "@/lib/supabase/worships";
 import WorshipListItem from "../WorshipListItem";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import CustomLoading from "@/components/commons/CustomLoading";
 
 type WorshipListProps = {}
 
@@ -23,9 +24,9 @@ const WorshipList = ({}: WorshipListProps) => {
     <div>
       <WorshipTypeChips selectedService={selectedService} setSelectedService={setSelectedService} />
       {isLoading || isFetching ? (
-        <div>로딩중...</div>
+        <CustomLoading text={'예배목록을 불러오고 있습니다..'}/>
       ) : (
-        <ScrollArea className="h-[calc(100vh-224px)] pt-[14px] pb-[60px]">
+        <ScrollArea className="h-[calc(100vh-224px)] pt-[14px] pb-[60px] scrollbar-hide">
           {data && data.length !== 0 ? (
             <div className="flex flex-col divide-y">
               {data.map(service => <WorshipListItem key={service.id} worship={service}/>)}
@@ -33,6 +34,7 @@ const WorshipList = ({}: WorshipListProps) => {
           ) : (
             <div>데이터 없어요</div>
           )}
+          <ScrollBar className="scrollbar-hide" />
         </ScrollArea>
       )}
     </div>
