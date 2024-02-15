@@ -18,19 +18,25 @@ const WorshipPage = async ({}: WorshipPageProps) => {
       <Container>
         <Tabs 
           defaultValue="weekly" 
-          className="h-full w-full max-w-[600px] mt-2"
+          className="h-full w-full max-w-[600px]"
         >
-          <TabsList className="h-8 w-full rounded-none">
-            <TabsTrigger value="weekly">이번주예배</TabsTrigger>
-            <TabsTrigger value="overview">전체목록</TabsTrigger>
-          </TabsList>
-          <TabsContent value="weekly" className="pt-[14px] pb-[20px] px-5 mt-4 bg-white">
+          <div className="flex justify-center bg-white py-2">
+            <TabsList className="bg-muted rounded-[20px] p-1">
+              <TabsTrigger value="weekly" className="rounded-[20px]">이번주예배</TabsTrigger>
+              <TabsTrigger value="overview" className="rounded-[20px]">전체목록</TabsTrigger>
+            </TabsList>
+          </div>
+          <TabsContent value="weekly" className="pt-[14px] pb-[20px] px-5 -mt-2 bg-white">
+            <Spacer className="h-2"/>
             <CalendarStrip />
             <Spacer className="h-4"/>
             <SectionHeader title={'예배 리스트'} />
-            <TodayWorshipList />
+            <div className="h-[calc(100vh-256px)]">
+              <TodayWorshipList />
+            </div>
           </TabsContent>
-          <TabsContent value="overview" className="pt-[14px] pb-[20px] px-5 mt-4 bg-white">
+          <TabsContent value="overview" className="pt-[14px] pb-[20px] px-5 -mt-2 bg-white">
+            <Spacer className="h-2"/>
             <WorshipList />
           </TabsContent>
         </Tabs>

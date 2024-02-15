@@ -3,21 +3,23 @@ import Container from "@/components/commons/Container/Container";
 import InnerContainer from "@/components/commons/Container/InnerContainer/InnerContainer";
 import Header from "@/components/commons/Header";
 import MainContainer from "@/components/commons/MainContainer/MainContainer";
-import Spacer from "@/components/commons/Spacer";
 import NoteCollectionCards from "@/components/domains/notes/NoteCollectionCards/NoteCollectionCards";
-import NoteHeader from "@/components/domains/notes/NoteHeader/NoteHeader";
+import Link from "next/link";
 
 type NotesProps = {}
 
 const NotesPage = async ({}: NotesProps) => {
 
   return (
-    <MainContainer>
+    <MainContainer className="bg-white">
       <Header />
       <Container>
         <InnerContainer>
-          <NoteHeader />
-          <Spacer className="h-4" />
+          <div className="py-4">
+            <Link href={'/search-notes'}>
+              <button className="h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-start text-muted-foreground">노트를 검색하세요</button>
+            </Link>
+          </div>
           <NoteCollectionCards />
         </InnerContainer>
       </Container>

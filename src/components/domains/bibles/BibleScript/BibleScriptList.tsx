@@ -1,6 +1,7 @@
 'use client'
 
-import { getBibleScriptList } from "@/supabase/worships";
+import CustomLoading from "@/components/commons/CustomLoading";
+import { getBibleScriptList } from "@/lib/supabase/worships";
 import { Enums } from "@/types/database.types";
 import { useQuery } from "@tanstack/react-query";
 
@@ -27,7 +28,7 @@ const BibleScriptList = ({ book, firstChapter, secondChapter, firstStart, firstE
   return (
     <div className="pb-16">
       {isLoading || isFetching ? (
-        <div>로딩중...</div>
+        <CustomLoading text={'본문을 가져오고 있습니다..'} />
       ) : (
         <>
           {data ? (

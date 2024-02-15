@@ -66,3 +66,28 @@ export const getNotes = async (type: Enums<'NOTE_TYPE'>) => {
   }
 }
 
+
+export const getSearchNotesByKeyword = async ({ keyword }:{ keyword: string }) => {
+  try {
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (user) {
+      const { data, error } = await supabase
+      .from('notes')
+      .select()
+      .textSearch('content', `${keyword}`)
+
+      return data 
+
+    } else {
+
+      return null
+    }
+
+  } catch (error) {
+    console.error(error)
+    return null
+
+  }
+}
+

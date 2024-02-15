@@ -10,7 +10,7 @@ import { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import DabarViewer from "@/components/domains/dabar/DabarViewer/DabarViewer";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import { getDabarsByCollectionId } from "@/supabase/dabar";
+import { getDabarsByCollectionId } from "@/lib/supabase/dabar";
 import Container from "@/components/commons/Container/Container";
 
 const DabarCollectionPage = ({ params }: { params: { slug: string } }) => {
@@ -29,12 +29,12 @@ const DabarCollectionPage = ({ params }: { params: { slug: string } }) => {
 
 
   return (
-    <Container>
-      <div className='flex items-center pt-4 my-2'>
+    <Container >
+      <div className='flex items-center py-4 px-5 bg-white'>
         <ChevronLeftIcon className='h-6 w-6 mr-2' onClick={() => router.back()}/>
-        <h2 className='text-xl'>다바르 암송카드</h2>
+        <h2 className='text-base'>다바르 암송카드</h2>
       </div>
-      <div className="mb-3">
+      <div className="my-2 px-5">
         <DabarViewController setIsHorizontalView={setIsHorizontalView}/>
       </div>
       {isLoading || isFetching ? (

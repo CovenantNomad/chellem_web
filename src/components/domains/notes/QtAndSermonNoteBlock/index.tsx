@@ -32,18 +32,7 @@ const QtAndSermonNoteBlock = ({ worship }: QtAndSermonNoteBlockProps) => {
   ])
 
   return (
-    <div className="h-full bg-white px-5">
-      <div className="flex justify-between items-center py-[14px]">
-        {worship.serviceType === 'DAYBREAK SERVICE' ? (
-          <span className="inline-block text-sm">QT노트</span>
-        ) : (
-          <span className="inline-block text-sm">설교노트</span>
-        )}
-        <NoteInputOptions 
-          viewOptions={viewOptions}
-          setViewOptions={setViewOptions}
-        />
-      </div>
+    <div className="h-[calc(100vh-120px)] px-5 bg-white">
       {worship.serviceType === 'DAYBREAK SERVICE' ? (
         <QtNoteForm
           viewOptions={viewOptions} 

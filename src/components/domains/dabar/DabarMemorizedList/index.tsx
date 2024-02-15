@@ -1,7 +1,7 @@
 'use client'
 
 import { Badge } from "@/components/ui/badge";
-import { getDabarRecords } from "@/supabase/dabar";
+import { getDabarRecords } from "@/lib/supabase/dabar";
 import { useQuery } from "@tanstack/react-query";
 import { formatDistanceToNow } from 'date-fns'
 

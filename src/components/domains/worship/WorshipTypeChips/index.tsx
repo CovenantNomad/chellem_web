@@ -19,7 +19,7 @@ const WorshipTypeChips = ({ selectedService, setSelectedService }: WorshipTypeCh
   ]
 
   return (
-    <ScrollArea className="w-full whitespace-nowrap">
+    <ScrollArea className="w-full whitespace-nowrap scrollbar-hide">
       <div className="flex w-max space-x-4 p-4">
         {serviceTypes.map((service) => (
           <Badge 

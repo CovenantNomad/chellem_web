@@ -1,9 +1,10 @@
+import { cn } from "@/lib/utils";
 
 type MainContainerProps = {}
 
-const MainContainer = ({ children }: {children: React.ReactNode}) => {
+const MainContainer = ({ children, className }: {children: React.ReactNode, className?: React.ComponentProps<'div'>['className']}) => {
   return (
-    <div className="pb-[78px]">
+    <div className={cn('pb-[78px]', className)}>
       {children}
     </div>
   );

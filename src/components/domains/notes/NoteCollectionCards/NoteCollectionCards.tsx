@@ -2,7 +2,7 @@
 
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
-import { getNoteCollections } from "@/supabase/notes";
+import { getNoteCollections } from "@/lib/supabase/notes";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 

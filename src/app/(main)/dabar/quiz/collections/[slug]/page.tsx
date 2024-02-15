@@ -5,7 +5,7 @@ import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 import { DialogTrigger } from "@/components/ui/dialog";
-import { getDabarsByCollectionId } from "@/supabase/dabar";
+import { getDabarsByCollectionId } from "@/lib/supabase/dabar";
 import Link from "next/link";
 import Container from "@/components/commons/Container/Container";
 

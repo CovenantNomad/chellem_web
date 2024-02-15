@@ -12,10 +12,11 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { useToast } from "@/components/ui/use-toast";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createQtNote, getExistingNote } from "@/supabase/worships";
+import { createQtNote, getExistingNote } from "@/lib/supabase/worships";
 import { Input } from "@/components/ui/input";
 import { useEffect } from "react";
-import { Label } from "@/components/ui/label";
+import { CalendarCheck2, ClipboardEdit, Pencil } from "lucide-react";
+import { Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTrigger } from "@/components/ui/drawer";
 
 type SermonNoteFormProps = {
   viewOptions: {
@@ -112,100 +113,120 @@ const SermonNoteForm = ({ viewOptions, script, book, chapters, serviceType, titl
           </div>
         </div>
       ) : (
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onHandleSubmit)} className="space-y-2">
-            {viewOptions[0].isVisible && (
+        <div>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onHandleSubmit)} className="h-full flex flex-col space-y-2 py-3">
               <FormField
                 control={form.control}
-                name="date"
+                name="content"
                 rules={{ required: true }}
                 render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <FormControl>
-                          <Button
-                            variant={"outline"}
-                            className={cn(
-                              "w-full pl-3 text-left font-normal",
-                              !field.value && "text-muted-foreground"
-                            )}
-                          >
-                            {field.value ? (
-                              format(field.value, "PPP")
-                            ) : (
-                              <span className={`${form.formState.errors.date && 'placeholder:text-red-600'}`}>날짜를 지정해주세요</span>
-                            )}
-                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                          </Button>
-                        </FormControl>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={field.value}
-                          onSelect={field.onChange}
-                          disabled={(date) =>
-                            date > new Date() || date < new Date("1900-01-01")
-                          }
-                          initialFocus
-                        />
-                      </PopoverContent>
-                    </Popover>
+                  <FormItem className="">
+                    <FormControl>
+                      <textarea 
+                        {...field}
+                        rows={20}
+                        placeholder="내용을 입력해주세요"
+                        className="w-full bg-background resize-none overflow-hidden placeholder:text-muted-foreground text-sm outline-none appearance-none"
+                      />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-            )}
-            {viewOptions[1].isVisible && (
-              <FormField
-                control={form.control}
-                name="title"
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <Input placeholder="설교제목을 입력해주세요" {...field} />
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
-            {viewOptions[2].isVisible && (
-              <FormField
-                control={form.control}
-                name="script"
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <Input placeholder="본문을 입력해주세요 (대표본문 1개만 입력해주세요)" {...field} />
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
-            <FormField
-              control={form.control}
-              name="content"
-              rules={{ required: true }}
-              render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormControl>
-                    <textarea 
-                      {...field}
-                      rows={20}
-                      placeholder="내용을 입력해주세요"
-                      className="flex min-h-[80px] w-full border-input bg-background ring-offset-background placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 border rounded-md py-4 px-3 text-sm outline-none appearance-none"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="flex justify-center">
-              <Button size={'lg'} type='submit' disabled={form.formState.isSubmitting}>등록</Button>
-            </div>
-          </form>
-        </Form>
+              <div className="absolute left-0 bottom-0 right-0 flex justify-between px-5 py-2 border-t z-50">
+                <FormField
+                  control={form.control}
+                  name="date"
+                  rules={{ required: true }}
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button 
+                              variant={'ghost'} 
+                              size={'sm'} 
+                              className={cn(
+                                !field.value && "bg-muted"
+                              )}
+                            >
+                              <CalendarCheck2 className="h-5 w-5" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={field.value}
+                            onSelect={field.onChange}
+                            disabled={(date) =>
+                              date > new Date() || date < new Date("1900-01-01")
+                            }
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Drawer>
+                  <DrawerTrigger asChild>
+                    <Button variant={'ghost'} size={'sm'}>
+                      <ClipboardEdit className="h-5 w-5"/>
+                    </Button>
+                  </DrawerTrigger>
+                  <DrawerContent>
+                    <DrawerHeader>
+                      <FormField
+                        control={form.control}
+                        name="title"
+                        rules={{ required: true }}
+                        render={({ field }) => (
+                          <FormItem className="flex flex-col">
+                            <Input placeholder="설교제목을 입력해주세요" {...field} />
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="script"
+                        rules={{ required: true }}
+                        render={({ field }) => (
+                          <FormItem className="flex flex-col">
+                            <Input placeholder="본문을 입력해주세요 (대표본문 1개만 입력해주세요)" {...field} />
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </DrawerHeader>
+                    <DrawerFooter>
+                      <DrawerClose asChild>
+                        <Button>저장</Button>
+                      </DrawerClose>
+                      <DrawerClose asChild>
+                        <Button 
+                          variant="outline" 
+                          onClick={() => {
+                            form.resetField('title')
+                            form.resetField('script')
+                          }}
+                        >
+                          취소
+                        </Button>
+                      </DrawerClose>
+                    </DrawerFooter>
+                  </DrawerContent>
+                </Drawer>
+                <Button variant={'ghost'} size={'sm'} type='submit' disabled={form.formState.isSubmitting} className={'group disabled:bg-muted'}>
+                  <Pencil className="text-sky-600" size={20}/>
+                </Button>
+              </div>
+            </form>
+          </Form>
+        </div>
       )}
     </div>
   );

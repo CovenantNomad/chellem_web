@@ -32,11 +32,11 @@ export default async function RootLayout({
 
   return (
     <html lang="kr">
-      <body className={cn(montserrat.className, 'bg-[#f4f6f8]')}>
+      <body className={cn(montserrat.className, 'bg-[#f4f6f8] h-screen')}>
         <Providers>
         {session ? (
             <>
-              <main className='relative max-w-[600px] mx-auto'>
+              <main className='h-full relative max-w-[600px] mx-auto'>
                 {children}
               </main>
               <Toaster />
