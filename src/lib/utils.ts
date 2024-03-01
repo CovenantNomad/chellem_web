@@ -99,7 +99,16 @@ export const getServiceName = (serviceType: Enums<'SERVICE_TYPE'>) => {
 
     case "DAYBREAK SERVICE":
       return '새벽예배'
+
+    case "NEW MOON SERVICE":
+      return '월삭예배'
+
+    case "SPECIAL DAYBREAK SERVICE":
+      return '특별새벽기도회'
   
+    case "SPECIAL SERVICE":
+      return '특별집회'
+
     default:
       break;
   }

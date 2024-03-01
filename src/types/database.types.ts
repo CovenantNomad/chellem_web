@@ -1,4 +1,12 @@
-export interface Database {
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[]
+
+export type Database = {
   public: {
     Tables: {
       bibles: {
@@ -297,7 +305,7 @@ export interface Database {
           serviceType: Database["public"]["Enums"]["SERVICE_TYPE"]
           title: string | null
           verses: number[] | null
-          youtube_url: string
+          youtube_url: string | null
         }
         Insert: {
           book?: Database["public"]["Enums"]["BOOK_TYPE"] | null
@@ -312,7 +320,7 @@ export interface Database {
           serviceType: Database["public"]["Enums"]["SERVICE_TYPE"]
           title?: string | null
           verses?: number[] | null
-          youtube_url: string
+          youtube_url?: string | null
         }
         Update: {
           book?: Database["public"]["Enums"]["BOOK_TYPE"] | null
@@ -327,7 +335,7 @@ export interface Database {
           serviceType?: Database["public"]["Enums"]["SERVICE_TYPE"]
           title?: string | null
           verses?: number[] | null
-          youtube_url?: string
+          youtube_url?: string | null
         }
         Relationships: [
           {
@@ -420,6 +428,7 @@ export interface Database {
         | "WEDNESDAY SERVICE"
         | "FRIDAY SERVICE"
         | "DAYBREAK SERVICE"
+        | "NEW MOON SERVICE"
         | "SPECIAL DAYBREAK SERVICE"
         | "SPECIAL SERVICE"
       VERSON_OF_BIBLE:

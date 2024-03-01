@@ -14,8 +14,9 @@ const WorshipTypeChips = ({ selectedService, setSelectedService }: WorshipTypeCh
     { id: 1, name: '수요예배', value: 'WEDNESDAY SERVICE'},
     { id: 2, name: '금요성령집회', value: 'FRIDAY SERVICE'},
     { id: 3, name: '새벽예배', value: 'DAYBREAK SERVICE'},
-    { id: 4, name: '특새', value: 'SPECIAL DAYBREAK SERVICE'},
-    { id: 5, name: '집회', value: 'SPECIAL SERVICE'}
+    { id: 4, name: '월삭예배', value: 'NEW MOON SERVICE'},
+    { id: 5, name: '특새', value: 'SPECIAL DAYBREAK SERVICE'},
+    { id: 6, name: '집회', value: 'SPECIAL SERVICE'}
   ]
 
   return (
